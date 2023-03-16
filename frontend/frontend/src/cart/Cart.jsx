@@ -19,13 +19,16 @@ function Cart() {
   }, [])
 
   const deleteItem = async (index) => {
-    try {
-      await axios.delete(`${URL}/${index}`)
-    } catch (error) {
-      console.log(error)
+    const question = prompt("Bạn có muốn xóa không yes/no", "no")
+    if (question === "yes") {
+      try {
+        await axios.delete(`${URL}/${index}`)
+      } catch (error) {
+        console.log(error)
+      }
+      const newDatas = items.filter(e => e.id != index)
+      setItems(newDatas);
     }
-    const newDatas = items.filter(e => e.id != index)
-    setItems(newDatas);
   }
 
   const decrementItem = async (index) => {
