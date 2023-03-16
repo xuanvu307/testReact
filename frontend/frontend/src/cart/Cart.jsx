@@ -44,7 +44,6 @@ function Cart() {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   const incrementItem = async (index) => {
@@ -137,7 +136,7 @@ function Cart() {
               </div>
               <div className="border mb-2 p-3 fs-5 fw-normal d-flex justify-content-between align-items-center">
                 <span className="text-black-50">Thành tiền:</span>
-                <span className="text-primary" id="total-money">{totalPrice + VAT} VND</span>
+                <span className="text-primary" id="total-money">{totalPrice + totalPrice/10} VND</span>
               </div>
             </div>
           </div>
