@@ -19,7 +19,7 @@ public class CartItemRepository {
                 .filter(cartItem -> cartItem.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> {
-                    throw new NotFoundException("Không tìm thấy id");
+                    throw new NotFoundException("Không tìm thấy id Cart");
                 });
     }
 }
