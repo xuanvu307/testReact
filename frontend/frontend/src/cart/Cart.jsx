@@ -4,7 +4,6 @@ import axios from 'axios';
 function Cart() {
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalprice] = useState(0);
-  const [VAT, setVAT] = useState(totalPrice / 10);
 
   const URL = "http://localhost:8080/api/v1/cartItems"
   useEffect(() => {
@@ -63,6 +62,15 @@ function Cart() {
     setItems(newDatas)
   }
 
+  useEffect(() => {
+    let sum = 0;
+    items.forEach(e => {
+      sum += e.count * e.course.price;
+    })
+    setTotalprice(sum);
+  })
+
+
   return (
     <div className="container">
       <div className="row">
@@ -104,6 +112,9 @@ function Cart() {
                     </div>
                     <div>
                       <button className="text-primary border-0 bg-transparent fw-light" onClick={() => deleteItem(e.id)}>
+                        <span>
+                          <i className="fa-solid fa-trash-can"></i>
+                        </span>
                         Xóa
                       </button>
                     </div>
@@ -122,7 +133,7 @@ function Cart() {
               </div>
               <div className="border mb-2 p-3 fs-5 fw-normal d-flex justify-content-between align-items-center">
                 <span className="text-black-50">VAT (10%):</span>
-                <span className="text-primary" id="vat-money">{VAT} VND</span>
+                <span className="text-primary" id="vat-money">{totalPrice/10} VND</span>
               </div>
               <div className="border mb-2 p-3 fs-5 fw-normal d-flex justify-content-between align-items-center">
                 <span className="text-black-50">Thành tiền:</span>
