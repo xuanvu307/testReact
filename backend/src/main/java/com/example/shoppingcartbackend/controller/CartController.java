@@ -1,7 +1,6 @@
 package com.example.shoppingcartbackend.controller;
 
 import com.example.shoppingcartbackend.dto.CartItemDto;
-import com.example.shoppingcartbackend.model.CartItem;
 import com.example.shoppingcartbackend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
