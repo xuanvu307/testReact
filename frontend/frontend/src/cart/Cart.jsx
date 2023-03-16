@@ -31,9 +31,6 @@ function Cart() {
   const decrementItem = async (index) => {
     try {
       const rs = await axios.put(`${URL}/${index}/decrement`)
-      if (rs.status !== 200) {
-        alert(rs.message)
-      }
       const newDatas = items.map(e => {
         if (e.id === index) {
           e.count = e.count - 1;
@@ -43,6 +40,7 @@ function Cart() {
       setItems(newDatas)
     } catch (error) {
       console.log(error)
+      alert(error.response.data.message)
     }
   }
 
@@ -132,11 +130,11 @@ function Cart() {
               </div>
               <div className="border mb-2 p-3 fs-5 fw-normal d-flex justify-content-between align-items-center">
                 <span className="text-black-50">VAT (10%):</span>
-                <span className="text-primary" id="vat-money">{totalPrice/10} VND</span>
+                <span className="text-primary" id="vat-money">{totalPrice / 10} VND</span>
               </div>
               <div className="border mb-2 p-3 fs-5 fw-normal d-flex justify-content-between align-items-center">
                 <span className="text-black-50">Thành tiền:</span>
-                <span className="text-primary" id="total-money">{totalPrice + totalPrice/10} VND</span>
+                <span className="text-primary" id="total-money">{totalPrice + totalPrice / 10} VND</span>
               </div>
             </div>
           </div>
