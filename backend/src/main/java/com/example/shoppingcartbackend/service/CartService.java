@@ -2,6 +2,7 @@ package com.example.shoppingcartbackend.service;
 
 import com.example.shoppingcartbackend.dto.CartItemDto;
 import com.example.shoppingcartbackend.exception.BadRequestException;
+import com.example.shoppingcartbackend.exception.NotFoundException;
 import com.example.shoppingcartbackend.mapper.CartMapper;
 import com.example.shoppingcartbackend.model.CartItem;
 import com.example.shoppingcartbackend.repository.CartItemRepository;
@@ -26,6 +27,7 @@ public class CartService {
     }
 
     public void deleteItem(Integer id) {
+        CartItem cart = cartItemRepository.getCartById(id);
         cartItemRepository.getListCart().removeIf(cartItem -> Objects.equals(cartItem.getId(), id));
     }
 
