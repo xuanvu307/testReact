@@ -19,15 +19,15 @@ function Cart() {
   }, [])
 
   const deleteItem = async (index) => {
-    const question = prompt("Bạn có muốn xóa không yes/no", "no")
-    if (question === "yes") {
+    const question = window.confirm("Bạn có đồng ý xóa không?")
+    if (question) {
       try {
         await axios.delete(`${URL}/${index}`)
+        const newDatas = items.filter(e => e.id != index)
+        setItems(newDatas);
       } catch (error) {
         console.log(error)
       }
-      const newDatas = items.filter(e => e.id != index)
-      setItems(newDatas);
     }
   }
 
@@ -42,7 +42,6 @@ function Cart() {
       })
       setItems(newDatas)
     } catch (error) {
-      console.log(error)
       alert(error.response.data.message)
     }
   }
